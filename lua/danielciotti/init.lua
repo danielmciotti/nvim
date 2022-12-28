@@ -1,5 +1,5 @@
-require("danielciotti.remap")
 require("danielciotti.set")
+require("danielciotti.remap")
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup

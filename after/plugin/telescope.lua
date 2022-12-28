@@ -1,31 +1,33 @@
-local telescope = require("telescope")
-local builtin = require('telescope.builtin')
-local telescopeConfig = require("telescope.config")
--- Clone the default Telescope configuration
-local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+-- [[ Configure Telescope ]]
+-- See `:help telescope` and `:help telescope.setup()`
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
+      },
+    },
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  },
+}
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fs', function()
-  builtin.grep_string({ search = vim.fn.input("Grep > ") });
-end)
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+-- Enable telescope fzf native, if installed
+pcall(require('telescope').load_extension, 'fzf')
 
--- I want to search in hidden/dot files.
-table.insert(vimgrep_arguments, "--hidden")
--- I don't want to search in the `.git` directory.
-table.insert(vimgrep_arguments, "--glob")
-table.insert(vimgrep_arguments, "!**/.git/*")
-
-telescope.setup({
-	defaults = {
-		-- `hidden = true` is not supported in text grep commands.
-		vimgrep_arguments = vimgrep_arguments,
-	},
-	pickers = {
-		find_files = {
-			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-		},
-	},
-})
+-- See `:help telescope.builtin`
+vim.keymap.set('n', '<leader>?',       require('telescope.builtin').oldfiles,                  { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers,                   { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>/',       require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[/] Find inside currently open buffer' })
+vim.keymap.set('n', '<leader>ff',      require('telescope.builtin').find_files,                { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fh',      require('telescope.builtin').git_files,                 { desc = '[F]ind [H]elp' })
+vim.keymap.set('n', '<leader>fw',      require('telescope.builtin').grep_string,               { desc = '[F]ind current [W]ord' })
+vim.keymap.set('n', '<leader>fg',      require('telescope.builtin').live_grep,                 { desc = '[F]ind by [G]rep' })
