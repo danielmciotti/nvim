@@ -27,9 +27,18 @@ return require('packer').startup(function(use)
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
   use('tpope/vim-endwise')
-  use('tpope/vim-surround')
   use('preservim/nerdtree')
   use('unblevable/quick-scope')
+
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
 
   use {
     'VonHeikemen/lsp-zero.nvim',

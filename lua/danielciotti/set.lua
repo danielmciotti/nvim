@@ -18,7 +18,7 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.diffopt = vertical
+vim.opt.diffopt = 'vertical'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
@@ -30,5 +30,7 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 
-vim.opt.mouse = nicr
+vim.opt.mouse = 'nicr'
+
+vim.opt.signcolumn = 'yes'
 
