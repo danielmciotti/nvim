@@ -107,26 +107,33 @@ require('lazy').setup({
         theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
+        refresh = {
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
+        }
       },
+      sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch'},
+        lualine_c = {
+          {
+            'filename',
+            file_status = true,
+            path = 1,
+          },
+        },
+        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {'location'}
+      },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {}
     },
   },
 
-  {
-    'akinsho/bufferline.nvim',
-    opts = {
-      options = {
-        mode = "buffers",
-        color_icons = false,
-        show_buffer_icons = false,
-        show_buffer_close_icons = false,
-        always_show_bufferline = true,
-        right_mouse_command = false,
-        left_mouse_command = false,
-        middle_mouse_command = false,
-        numbers = "buffer_id",
-      },
-    },
-  },
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
