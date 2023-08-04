@@ -107,15 +107,8 @@ require('lazy').setup({
         theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
-        refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
-        }
       },
       sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch'},
         lualine_c = {
           {
             'filename',
@@ -123,14 +116,7 @@ require('lazy').setup({
             path = 1,
           },
         },
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
       },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = {}
     },
   },
 
