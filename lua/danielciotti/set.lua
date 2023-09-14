@@ -28,7 +28,7 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 
-vim.opt.mouse = 'nicr'
+vim.opt.mouse = ''
 
 vim.opt.signcolumn = 'yes'
 
